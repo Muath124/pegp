@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            text-align: right;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .content {
+            background: white;
+            padding: 20px;
+            max-width: 400px;
+            margin: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<main>
+    <section class="content">
+        <h2>تسجيل الدخول</h2>
+        <form id="loginForm">
+            <label for="email">البريد الإلكتروني:</label>
+            <input type="email" id="email" name="email" placeholder="example@email.com" required>
+
+            <label for="password">كلمة المرور:</label>
+            <input type="password" id="password" name="password" placeholder="••••••••" required>
+
+            <button type="submit">تسجيل الدخول<a href="index.html"></a></button>
+        </form>
+        <p>ليس لديك حساب؟ <a href="حساب جديد.html">إنشاء حساب جديد</a></p>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2024 منصتنا سطور التعليمية. جميع الحقوق محفوظة.</p>
+</footer>
+
+<script>
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
+
+        let storedUser = localStorage.getItem("user");
+
+        if (!storedUser) {
+            alert("لا يوجد حساب بهذا البريد الإلكتروني. يرجى التسجيل أولاً.");
+            return;
+        }
+
+        let user = JSON.parse(storedUser);
+
+        if (email === user.email && password === user.password) {
+            alert("تم تسجيل الدخول بنجاح!");
+            window.location.href = "index.html"; 
+        } else {
+            alert("البريد الإلكتروني أو كلمة المرور غير صحيحة.");
+        }
+    });
+</script>
+
+</body>
+</html>
